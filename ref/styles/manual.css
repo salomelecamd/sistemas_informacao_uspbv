@@ -1,0 +1,257 @@
+/* ============================================================
+   Manual Orientador TSA — Estilos personalizados
+   USP Baixo Vouga | Sistemas de Informação em Saúde Pública
+   ============================================================ */
+
+/* Ocultar o título automático do Quarto (usamos o header personalizado) */
+#title-block-header {
+  display: none;
+}
+
+/* --- Título + logo lado a lado --- */
+.manual-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.manual-title-text {
+  flex: 1;
+}
+
+.manual-logo {
+  max-height: 160px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.manual-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1a3a52;
+  margin: 0 0 0.3rem 0;
+  line-height: 1.25;
+}
+
+.manual-subtitle {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: #3a5f7a;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+/* --- Caixa de metadados (datas + autor) --- */
+.manual-meta-box {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  padding: 0.65rem 1.2rem;
+  background: #f0f4f8;
+  border-left: 4px solid #1a6e9e;
+  border-radius: 5px;
+  font-size: 0.88rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* --- Screenshot com imagem real --- */
+.screenshot-box {
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 0.75rem 0;
+  background: #f8f9fa;
+}
+
+.screenshot-caption {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: #555;
+  background: #e9ecef;
+  margin: 0;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.screenshot-img {
+  display: block;
+  max-width: 40%;
+  margin: 0 auto;
+}
+
+/* --- Tabela de comparação (antes/depois) --- */
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+}
+
+.comparison-table th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+  background: #1a6e9e;
+  color: white;
+  border: 1px solid #1a6e9e;
+}
+
+.comparison-table td {
+  padding: 0.75rem 1rem;
+  vertical-align: top;
+  border: 1px solid #dee2e6;
+  width: 50%;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.comparison-table tr:nth-child(odd) td {
+  background: #f8f9fa;
+}
+
+.action-note {
+  margin-top: 1rem;
+  padding: 0.5rem 0.75rem;
+  background: #e8f4ea;
+  border-left: 3px solid #2e7d32;
+  border-radius: 4px;
+  font-size: 0.88rem;
+}
+
+/* --- Cards de passo --- */
+.step-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #1a6e9e;
+  color: white;
+  padding: 0.75rem 1.2rem;
+  border-radius: 6px;
+  margin: 1.5rem 0 1rem;
+}
+
+.step-number {
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: white;
+  color: #1a6e9e;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.step-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* --- Placeholders de screenshots e vídeos --- */
+.screenshot-placeholder {
+  background: #f0f4f8;
+  border: 2px dashed #adb5bd;
+  border-radius: 6px;
+  padding: 1.2rem 1.5rem;
+  text-align: center;
+  color: #6c757d;
+  font-size: 0.88rem;
+  margin: 0.75rem 0;
+}
+
+.screenshot-placeholder span {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 0.75rem 0;
+}
+
+.video-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8f1f8;
+  border: 2px solid #1a6e9e;
+  border-radius: 6px;
+  padding: 1.2rem 1rem;
+  text-align: center;
+  color: #1a6e9e;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  min-height: 70px;
+}
+
+.video-placeholder:hover {
+  background: #1a6e9e;
+  color: white;
+  text-decoration: none;
+}
+
+/* --- Callout de fase de teste --- */
+.callout-test {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  background: #fff8e1;
+  border-left: 4px solid #f9a825;
+  border-radius: 6px;
+  padding: 0.9rem 1.1rem;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.callout-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+/* --- Nota de fecho --- */
+.closing-note {
+  text-align: center;
+  font-style: italic;
+  color: #555;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dee2e6;
+}
+
+/* --- TOC e tipografia geral --- */
+#TOC {
+  font-size: 0.88rem;
+}
+
+h1, h2, h3, h4 {
+  color: #1a3a52;
+}
+
+table.striped tbody tr:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+code {
+  background: #f0f4f8;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  font-size: 0.88em;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 1.5rem 0;
+}
