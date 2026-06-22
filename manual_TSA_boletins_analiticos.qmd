@@ -39,7 +39,7 @@ format:
 
 O projeto de intervenção **"Sistemas de Informação em Saúde Pública | USP Baixo Vouga"** visa a automatização de processos administrativos morosos e de reduzido valor acrescentado. O objetivo é otimizar a gestão do tempo dos profissionais da USP, permitindo a realocação do tempo libertado para funções e tarefas essenciais e de valor acrescentado para a prática em Saúde Pública. Paralelamente, este projeto corre em estreito alinhamento com o processo de certificação e melhoria contínua da USP.
 
-Este manual atua como um guia de consulta para a transição e adaptação aos novos fluxos de trabalho. O [link](https://salomelecamd.github.io/sistemas_informacao_uspbv/) dá acesso à versão mais atualizada do manual, enquanto que os ficheiros em PDF e HTML serão enviados via email apenas perante atualizações substanciais aos procedimentos.
+Este manual atua como um guia de consulta para a transição e adaptação aos novos fluxos de trabalho. O [link](https://salomelecamd.github.io/sistemas_informacao_uspbv/) dá acesso à versão mais atualizada do manual, enquanto que os ficheiros HTML serão enviados via email apenas perante atualizações substanciais aos procedimentos.
 
 ## Programa de Vigilância Sanitária das Águas {#sec-pvsa}
 
@@ -99,7 +99,7 @@ Os dados extraídos dos boletins são organizados e inseridos nas seguintes list
 
 | Lista | Tipo de análise |
 |---|---|
-| `lista_ach` | Água de Consumo Humano (exclui pesquisa de legionella) |
+| `lista_ach` | Água de Consumo Humano (exclui pesquisa de Legionella) |
 | `lista_legionella` | Água de Consumo Humano (pesquisa de Legionella) |
 | `lista_piscinas` | Água de Piscina |
 | `lista_amn` | Água Mineral Natural, de Nascente e Termal |
@@ -221,7 +221,7 @@ Após a validação descrita no passo anterior, o campo **"conclusão"** tem de 
 
 #### Boletim retificado {#sec-retificado}
 
-A receção de um boletim retificado (com número de relatório e ID de colheita igual) despoleta a deteção de duplicação pelo sistema e a atualização do registo existente na lista de resultados com os novos valores. O PDF original não é substituído, sendo conservado no arquivo.
+A receção de um boletim retificado (com número de relatório e ID de colheita igual) espoleta a deteção de duplicação pelo sistema e a atualização do registo existente na lista de resultados com os novos valores. O PDF original não é substituído, sendo conservado no arquivo.
 
 **Procedimento:** Após a receção de nova notificação, confrontar o novo PDF com o registo atualizado e reavaliar o campo "Conclusão".
 
@@ -258,7 +258,7 @@ Os sistemas de informação com automatizações não são infalíveis. É essen
 
 : Template de email para reporte de ocorrências {.striped}
 
-## Referência Rápida — Acessos {#sec-ref}
+## Acessos rápidos {#sec-ref}
 
 | Recurso | Endereço / Informação |
 |---|---|
@@ -272,5 +272,5 @@ Os sistemas de informação com automatizações não são infalíveis. É essen
 ---
 
 ```{=html}
-<p class="closing-note">Obrigada pela colaboração neste processo.</p>
+<p class="closing-note">Obrigada pela colaboração.</p>
 ```
