@@ -102,7 +102,7 @@ Os dados extraídos dos boletins são organizados e inseridos nas seguintes list
 | `lista_ach` | Água de Consumo Humano (exclui pesquisa de Legionella) |
 | `lista_legionella` | Água de Consumo Humano (pesquisa de Legionella) |
 | `lista_piscinas` | Água de Piscina |
-| `lista_amn` | Água Mineral Natural, de Nascente e Termal |
+| `lista_amnn` | Águas Minerais Naturais e de Nascente |
 
 : Listas de resultados no SharePoint {.striped .hover}
 
@@ -252,7 +252,7 @@ Os sistemas de informação com automatizações não são infalíveis. É essen
 | Contacto | Informação |
 |---|---|
 | Para: | sbleca@ulsra.min-saude.pt |
-| CC (sempre): | usp.ulsra@ulsra.min-saude.pt |
+| CC (sempre): | usp.ulsra@ulsra.min-saude.pt ; amvieira2@ulsra.min-saude.pt |
 | Assunto sugerido | Problema – Sistemas de Informação em Saúde Pública |
 | Corpo do e-mail: | Identificação do programa (ex.: PVSA); número do boletim (`n_boletim`), se aplicável; descrição sucinta da anomalia (ex.: valor extraído pelo sistema vs. valor real no boletim). |
 
