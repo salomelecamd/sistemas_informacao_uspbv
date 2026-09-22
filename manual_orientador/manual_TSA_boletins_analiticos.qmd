@@ -25,13 +25,8 @@ format:
 <div class="manual-meta-box">
   <span>👤 Autor: S. Leça</span>
   <span>📅 Criado em: 22 de junho de 2026</span>
-  <span>🔄 Última atualização: <span id="last-updated"></span></span>
+  <span>🔄 Última atualização: 22 de setembro de 2026</span>
 </div>
-<script>
-  const d = new Date(document.lastModified);
-  const opts = { day: '2-digit', month: 'long', year: 'numeric' };
-  document.getElementById('last-updated').textContent = d.toLocaleDateString('pt-PT', opts);
-</script>
 <hr/>
 ```
 
@@ -223,9 +218,39 @@ Após a validação descrita no passo anterior, o campo **"conclusão"** tem de 
 
 #### Boletim retificado {#sec-retificado}
 
-A receção de um boletim retificado (com número de relatório e ID de colheita igual) espoleta a deteção de duplicação pelo sistema e a atualização do registo existente na lista de resultados com os novos valores. O PDF original não é substituído, sendo conservado no arquivo.
+A receção de um boletim retificado (com número de relatório e ID de colheita iguais) espoleta a deteção de duplicação pelo sistema e a atualização do registo existente na lista de resultados com os novos valores. Todos os campos são substituídos, incluindo eventuais correções manuais já efetuadas no registo. O PDF original não é substituído, sendo conservado no arquivo.
 
-**Procedimento:** Após a receção de nova notificação, confrontar o novo PDF com o registo atualizado e reavaliar o campo "Conclusão".
+**Procedimento:** Após a receção de nova notificação, confrontar o novo PDF com o registo atualizado, repetir as correções manuais que se mantenham necessárias e reavaliar o campo "Conclusão".
+
+#### Boletim provisório {#sec-provisorio}
+
+O boletim provisório é enviado pelo INSA, ainda incompleto, para permitir uma ação rápida da equipa local caso algum resultado não esteja conforme, sem ter de aguardar pelos resultados definitivos. Pode, por isso, apresentar parâmetros sem resultado, por a análise laboratorial ainda não estar concluída.
+
+O boletim provisório é transcrito para a lista de resultados como qualquer outro boletim. A receção do boletim definitivo (com número de relatório e ID de colheita iguais) espoleta a deteção de duplicação pelo sistema e a atualização do registo existente com os novos valores, nos termos descritos em 2.3.1. Todos os campos são substituídos, incluindo eventuais correções manuais já efetuadas.
+
+Para efeitos de registo e de histórico, deve ser considerado o boletim definitivo.
+
+A distinção entre boletim provisório e definitivo é feita pela indicação presente no boletim (ver Figura X).
+
+::: {.content-visible when-format="html"}
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">📄 Distinção entre boletim definitivo e boletim provisório</p>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; padding:1rem;">
+    <div>
+      <p style="text-align:center; font-size:0.82rem; color:#555; margin-bottom:0.4rem;">Boletim Definitivo</p>
+      <img src="ref/images/boletim_definitivo.png" alt="Boletim Definitivo" style="width:100%; border:1px solid #dee2e6; border-radius:4px;"/>
+    </div>
+    <div>
+      <p style="text-align:center; font-size:0.82rem; color:#555; margin-bottom:0.4rem;">Boletim Provisório</p>
+      <img src="ref/images/boletim_provisorio.png" alt="Boletim Provisório" style="width:100%; border:1px solid #dee2e6; border-radius:4px;"/>
+    </div>
+  </div>
+</div>
+```
+:::
+
+**Procedimento:** Analisar o boletim provisório para identificação de resultados não conformes que exijam ação imediata. Não corrigir os valores transcritos: a verificação, a correção e a avaliação final do campo "Conclusão" devem ser efetuadas apenas após a receção do boletim definitivo.
 
 #### Boletim de tipo não reconhecido {#sec-nao-reconhecido}
 
