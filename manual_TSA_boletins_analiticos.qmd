@@ -25,13 +25,8 @@ format:
 <div class="manual-meta-box">
   <span>👤 Autor: S. Leça</span>
   <span>📅 Criado em: 22 de junho de 2026</span>
-  <span>🔄 Última atualização: <span id="last-updated"></span></span>
+  <span>🔄 Última atualização: 20 de outubro de 2026</span>
 </div>
-<script>
-  const d = new Date(document.lastModified);
-  const opts = { day: '2-digit', month: 'long', year: 'numeric' };
-  document.getElementById('last-updated').textContent = d.toLocaleDateString('pt-PT', opts);
-</script>
 <hr/>
 ```
 
@@ -223,13 +218,494 @@ Após a validação descrita no passo anterior, o campo **"conclusão"** tem de 
 
 #### Boletim retificado {#sec-retificado}
 
-A receção de um boletim retificado (com número de relatório e ID de colheita igual) espoleta a deteção de duplicação pelo sistema e a atualização do registo existente na lista de resultados com os novos valores. O PDF original não é substituído, sendo conservado no arquivo.
+A receção de um boletim retificado (com número de relatório e ID de colheita iguais) espoleta a deteção de duplicação pelo sistema e a atualização do registo existente na lista de resultados com os novos valores. Todos os campos são substituídos, incluindo eventuais correções manuais já efetuadas no registo. O PDF original não é substituído, sendo conservado no arquivo.
 
-**Procedimento:** Após a receção de nova notificação, confrontar o novo PDF com o registo atualizado e reavaliar o campo "Conclusão".
+**Procedimento:** Após a receção de nova notificação, confrontar o novo PDF com o registo atualizado, repetir as correções manuais que se mantenham necessárias e reavaliar o campo "Conclusão".
+
+#### Boletim provisório {#sec-provisorio}
+
+O boletim provisório é enviado pelo INSA, ainda incompleto, para permitir uma ação rápida da equipa local caso algum resultado não esteja conforme, sem ter de aguardar pelos resultados definitivos. Pode, por isso, apresentar parâmetros sem resultado, por a análise laboratorial ainda não estar concluída.
+
+O boletim provisório é transcrito para a lista de resultados como qualquer outro boletim. A receção do boletim definitivo (com número de relatório e ID de colheita iguais) espoleta a deteção de duplicação pelo sistema e a atualização do registo existente com os novos valores, nos termos descritos em 2.3.1. Todos os campos são substituídos, incluindo eventuais correções manuais já efetuadas.
+
+Para efeitos de registo e de histórico, deve ser considerado o boletim definitivo.
+
+A distinção entre boletim provisório e definitivo é feita pela indicação presente no boletim (ver Figura X).
+
+::: {.content-visible when-format="html"}
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">📄 Distinção entre boletim definitivo e boletim provisório</p>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; padding:1rem;">
+    <div>
+      <p style="text-align:center; font-size:0.82rem; color:#555; margin-bottom:0.4rem;">Boletim Definitivo</p>
+      <img src="ref/images/boletim_definitivo.png" alt="Boletim Definitivo" style="width:100%; border:1px solid #dee2e6; border-radius:4px;"/>
+    </div>
+    <div>
+      <p style="text-align:center; font-size:0.82rem; color:#555; margin-bottom:0.4rem;">Boletim Provisório</p>
+      <img src="ref/images/boletim_provisorio.png" alt="Boletim Provisório" style="width:100%; border:1px solid #dee2e6; border-radius:4px;"/>
+    </div>
+  </div>
+</div>
+```
+:::
+
+**Procedimento:** Analisar o boletim provisório para identificação de resultados não conformes que exijam ação imediata. Não corrigir os valores transcritos: a verificação, a correção e a avaliação final do campo "Conclusão" devem ser efetuadas apenas após a receção do boletim definitivo.
 
 #### Boletim de tipo não reconhecido {#sec-nao-reconhecido}
 
 Caso o sistema não consiga categorizar o tipo de análise, o ficheiro é alocado à pasta `nao_identificado`, sem a criação de registo na lista ou notificação à equipa local. A monitorização destas ocorrências é realizada centralmente pela equipa gestora do programa, que receberá um email automático de notificação de ocorrência desta situação.
+
+## Calendário Partilhado da USP {#sec-calendario}
+
+Encontramo-nos na fase piloto do **Calendário Partilhado da USP Baixo Vouga**. O sistema reúne num só sítio o planeamento e o registo das atividades da Unidade, e assenta em quatro peças:
+
+- uma aplicação **Power Apps**, onde cada profissional planeia e regista as suas atividades;
+- fluxos do **Power Automate**, que criam os eventos nos calendários partilhados dos polos e equipas e enviam os convites aos participantes;
+- listas do **SharePoint**, onde ficam guardadas todas as atividades;
+- um relatório **Power BI**, que reúne as atividades realizadas para análise e para o Relatório de Atividades da USP.
+
+Nesta fase participam o Serviço Local de Estarreja, o Serviço Local de Albergaria-a-Velha, o Serviço Local de Vagos, a Equipa de Gestão e da Qualidade, a Equipa Gestora do PVSA e o Núcleo de Vacinação.
+
+```{=html}
+<div class="callout-test">
+  <span class="callout-icon">⚠️</span>
+  <div>
+    <strong>Fase Piloto:</strong> A aplicação contém algumas atividades de simulação, criadas apenas para teste. Qualquer comportamento inesperado (atividade que não aparece, evento que não chega ao calendário, número que não bate certo) deve ser reportado (ver secção <a href="#sec-reporte">Reporte de Ocorrências</a>).
+  </div>
+</div>
+```
+
+### O que muda com este sistema? {#sec-cal-mudancas}
+
+```{=html}
+<table class="comparison-table">
+  <thead>
+    <tr>
+      <th>⚠️ Processo Anterior (Manual)</th>
+      <th>✅ Novo Processo (Automatizado)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <ol>
+          <li>Atividades planeadas em agendas pessoais, folhas Excel ou e-mails dispersos;</li>
+          <li>Criação manual do evento no calendário do polo/equipa e envio individual dos convites;</li>
+          <li>Pouca visibilidade sobre o que as outras equipas e polos estão a fazer;</li>
+          <li>Contagem manual das atividades realizadas para o Relatório de Atividades.</li>
+        </ol>
+      </td>
+      <td>
+        <ol>
+          <li>Registo de cada atividade na aplicação, com programa e tipo de atividade do catálogo da USP;</li>
+          <li>Criação automática do evento no calendário da unidade e envio automático dos convites;</li>
+          <li>Vista Global com todas as atividades da USP, com filtros e resumo em números;</li>
+          <li>Importação da planificação anual a partir de um modelo Excel;</li>
+          <li>Reunião automática das atividades realizadas no Power BI, pronta a extrair.</li>
+        </ol>
+        <p class="action-note">→ <strong>Ação Manual:</strong> Registo da atividade na aplicação e, depois da data, indicação do estado final (Realizada, Reagendada ou Cancelada)</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+```
+
+### Acesso à aplicação {#sec-cal-acesso}
+
+A aplicação abre no navegador, através do [link da aplicação](https://apps.powerapps.com/play/e/default-22c84608-f01d-46c5-8024-63cc962e5f51/a/50d606a5-77cc-4e8b-a6ee-1ebd49de9840?tenantId=22c84608-f01d-46c5-8024-63cc962e5f51), com a conta institucional. Na primeira utilização pode surgir um pedido para permitir a ligação ao SharePoint: deve carregar em **Permitir**.
+
+O ecrã inicial dá acesso a todas as funcionalidades:
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">🏠 Ecrã inicial da aplicação</p>
+  <img src="ref/images/calendario/01_inicio.jpg" alt="Ecrã inicial da aplicação Calendário Partilhado" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span><strong>Planear atividade:</strong> para atividades futuras. Cria o evento no calendário da unidade e envia convite aos participantes.</span></li>
+    <li><span><strong>Registar atividade:</strong> para atividades que já aconteceram e não foram planeadas na aplicação.</span></li>
+    <li><span><strong>Os meus eventos:</strong> as atividades em que participa ou que organizou, e as que estão por fechar.</span></li>
+    <li><span><strong>Vista Global:</strong> todas as atividades da USP, com filtros e resumo em números.</span></li>
+    <li><span><strong>Importar planificação anual:</strong> abre a biblioteca onde se carrega o modelo Excel preenchido.</span></li>
+  </ol>
+</div>
+```
+
+```{=html}
+<div class="callout-info">
+  <span class="callout-icon">💡</span>
+  <div>
+    <strong>Planear ou Registar?</strong> Se a atividade ainda vai acontecer, use <strong>Planear atividade</strong>. Se já aconteceu e não foi planeada, use <strong>Registar atividade</strong>. Uma atividade planeada não deve voltar a ser registada: basta marcá-la como Realizada em "Os meus eventos" (ver <a href="#sec-cal-fechar">Fechar uma atividade</a>).
+  </div>
+</div>
+```
+
+### Planear uma atividade (Passo a Passo) {#sec-cal-planear}
+
+```{=html}
+<div class="step-card">
+  <div class="step-number">1</div>
+  <div class="step-title">Abrir o formulário "Planear atividade"</div>
+</div>
+```
+
+No ecrã inicial, carregar em **Planear atividade**. Os campos assinalados com asterisco (*) são obrigatórios.
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">📝 Formulário "Planear atividade"</p>
+  <img src="ref/images/calendario/02_planear_vazio.jpg" alt="Formulário de planeamento de atividade" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span><strong>Programa:</strong> escolher primeiro o programa ou área de intervenção.</span></li>
+    <li><span><strong>Tipo de atividade:</strong> mostra apenas os tipos do programa escolhido (ver passo 2).</span></li>
+    <li><span><strong>Data e hora:</strong> tem de ser uma data futura.</span></li>
+    <li><span><strong>Duração (minutos):</strong> tempo previsto da atividade.</span></li>
+    <li><span><strong>Outros participantes:</strong> colegas que também participam. Cada um recebe convite no seu calendário.</span></li>
+    <li><span><strong>Eu participo nesta atividade:</strong> vem marcado. Desmarcar se está apenas a registar uma atividade de colegas (ver <a href="#sec-cal-especiais">Situações Especiais</a>).</span></li>
+    <li><span><strong>Guardar:</strong> grava a atividade e volta ao ecrã inicial.</span></li>
+  </ol>
+</div>
+```
+
+---
+
+```{=html}
+<div class="step-card">
+  <div class="step-number">2</div>
+  <div class="step-title">Escolher o programa e o tipo de atividade</div>
+</div>
+```
+
+Os programas e os tipos de atividade vêm do **catálogo de atividades da USP**, construído a partir do Relatório de Atividades e validado pelas equipas de cada programa. Depois de escolhido o programa, a lista do tipo de atividade mostra apenas os tipos desse programa, seguidos dos tipos **transversais** (reuniões, formação, apoio administrativo), comuns a todos os programas. É possível escrever parte do nome para filtrar a lista.
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">🔎 O tipo de atividade depende do programa escolhido</p>
+  <img src="ref/images/calendario/03_planear_tipo.jpg" alt="Lista de tipos de atividade filtrada pelo programa PVSA" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span>Programa escolhido (neste exemplo, PVSA (Águas)).</span></li>
+    <li><span>Tipos de atividade disponíveis para esse programa.</span></li>
+  </ol>
+</div>
+```
+
+---
+
+```{=html}
+<div class="step-card">
+  <div class="step-number">3</div>
+  <div class="step-title">Completar os restantes campos e guardar</div>
+</div>
+```
+
+Indicar o **profissional**, a **categoria profissional** e a **unidade** (polo, serviço ou equipa) cujo calendário recebe o evento. O concelho, o local, as coordenadas GPS e as observações são opcionais, mas ajudam a contextualizar a atividade e a analisá-la mais tarde. Carregar em **Guardar**.
+
+---
+
+```{=html}
+<div class="step-card">
+  <div class="step-number">4</div>
+  <div class="step-title">Confirmar o evento no calendário</div>
+</div>
+```
+
+Alguns instantes depois de guardar, o sistema cria o evento no **calendário partilhado da unidade** e envia o convite a cada participante, que o vê no seu calendário do Outlook. A atividade fica com o estado **Planeada** e aparece em "Os meus eventos" de cada participante.
+
+### Registar uma atividade já realizada {#sec-cal-registar}
+
+O formulário **Registar atividade** é igual ao de planeamento, com duas diferenças:
+
+- a data e hora não pode ser futura;
+- a atividade fica logo com o estado **Realizada**.
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">✅ Formulário "Registar atividade"</p>
+  <img src="ref/images/calendario/04_registar.jpg" alt="Formulário de registo de atividade realizada" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span>O título confirma que está a registar uma atividade já realizada.</span></li>
+    <li><span><strong>Data e hora:</strong> a data em que a atividade aconteceu (hoje ou anterior).</span></li>
+    <li><span><strong>Eu participo nesta atividade:</strong> desmarcar se está apenas a registar uma atividade realizada por colegas e, nesse caso, indicar os participantes.</span></li>
+  </ol>
+</div>
+```
+
+```{=html}
+<div class="callout-info">
+  <span class="callout-icon">💡</span>
+  <div>
+    <strong>O registo não cria evento no calendário:</strong> como a atividade já aconteceu, não é criado evento no calendário da unidade nem são enviados convites. Ainda assim, a atividade fica gravada: aparece a verde em "Os meus eventos" de cada participante, aparece na Vista Global e é contabilizada no Power BI como atividade realizada.
+  </div>
+</div>
+```
+
+### Os meus eventos {#sec-cal-meus}
+
+Este ecrã mostra, em calendário, as atividades em que participa ou que organizou. As cores indicam o estado de cada atividade.
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">📅 Ecrã "Os meus eventos" (vista mensal)</p>
+  <img src="ref/images/calendario/06_meus_mes.jpg" alt="Ecrã Os meus eventos em vista mensal" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span><strong>Dia / Semana / Mês:</strong> muda a vista do calendário. As setas e "Ir para hoje" navegam entre períodos.</span></li>
+    <li><span><strong>Por fechar:</strong> atividades cuja data já passou e ainda não têm estado final, ou que ficaram por reagendar. Clicar numa para a resolver.</span></li>
+    <li><span>Atividade realizada (a verde). Clicar numa atividade abre o respetivo detalhe.</span></li>
+    <li><span><strong>Legenda de cores:</strong> azul = planeada; laranja = em atraso; verde = realizada.</span></li>
+    <li><span><strong>Resumo do mês:</strong> número de atividades realizadas, horas, planeadas e canceladas. "Mostrar canceladas" faz aparecer também as canceladas.</span></li>
+  </ol>
+</div>
+```
+
+#### Fechar uma atividade {#sec-cal-fechar}
+
+Depois da data da atividade, é necessário indicar o que aconteceu. Ao clicar numa atividade **por fechar**, abre-se a janela de detalhe com as opções disponíveis:
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">🗂️ Detalhe de uma atividade por fechar</p>
+  <img src="ref/images/calendario/07_detalhe_porfechar.jpg" alt="Janela de detalhe com os botões Realizada, Reagendar, Cancelar e Editar" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span><strong>Realizada:</strong> a atividade aconteceu. Passa a verde e conta como realizada no Power BI.</span></li>
+    <li><span><strong>Reagendar:</strong> a atividade foi adiada. Indicar a nova data, ou escolher "Ainda não sei a nova data"; neste caso fica em "Por reagendar" até ser escolhida a data.</span></li>
+    <li><span><strong>Cancelar:</strong> a atividade não se vai realizar. O evento é cancelado no calendário da unidade.</span></li>
+    <li><span><strong>Editar:</strong> corrigir dados da atividade (duração, tipo, participantes, local, etc.).</span></li>
+  </ol>
+</div>
+```
+
+**Basta um participante fechar a atividade:** o estado muda para todos os participantes e o calendário é atualizado. Fica registado quem alterou o estado e quando. Depois de uma atividade estar Realizada ou Cancelada, os botões de estado deixam de aparecer e resta apenas a opção **Editar**, para correções.
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">✔️ Detalhe de uma atividade já realizada</p>
+  <img src="ref/images/calendario/08_detalhe_realizada.jpg" alt="Janela de detalhe de uma atividade realizada" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span>Data, hora e estado atual da atividade.</span></li>
+    <li><span><strong>Editar:</strong> continua disponível para corrigir um registo.</span></li>
+  </ol>
+</div>
+```
+
+```{=html}
+<div class="callout-test">
+  <span class="callout-icon">⏰</span>
+  <div>
+    <strong>Lembrete diário:</strong> quem tiver atividades em atraso ou por reagendar recebe um e-mail de resumo com essas atividades. Para deixar de o receber, basta fechá-las em "Os meus eventos".
+  </div>
+</div>
+```
+
+### Vista Global {#sec-cal-global}
+
+A Vista Global mostra **todas as atividades da USP**. Cada atividade aparece uma única vez, mesmo que tenha vários participantes. Cada profissional pode alterar as suas atividades; a Coordenação pode alterar todas.
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">🌐 Vista Global (separador Calendário)</p>
+  <img src="ref/images/calendario/10_vg_mes.jpg" alt="Vista Global em calendário mensal com filtros" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span><strong>Calendário / Lista / Números:</strong> três formas de ver as mesmas atividades.</span></li>
+    <li><span><strong>Filtro por unidade:</strong> "Todas as unidades" ou um polo, serviço ou equipa.</span></li>
+    <li><span><strong>Filtros adicionais:</strong> categoria profissional, programa e estado.</span></li>
+    <li><span>Exemplo de atividade criada com "Registar atividade": aparece na Vista Global, a verde, sem ter gerado evento no calendário.</span></li>
+  </ol>
+</div>
+```
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">📋 Vista Global (separador Lista)</p>
+  <img src="ref/images/calendario/11_vg_lista.jpg" alt="Vista Global em lista com o estado de cada atividade" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span>Estado de cada atividade (Realizado, Adiado, Cancelado, Planeado).</span></li>
+    <li><span>As atividades canceladas aparecem riscadas.</span></li>
+  </ol>
+</div>
+```
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">📊 Vista Global (separador Números)</p>
+  <img src="ref/images/calendario/12_vg_numeros.jpg" alt="Vista Global com indicadores do período" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span>Indicadores do período e dos filtros escolhidos: atividades realizadas, horas, cumprimento do planeamento e apoio entre polos.</span></li>
+    <li><span>Atividades realizadas por unidade, por programa e tipos de atividade mais frequentes.</span></li>
+  </ol>
+</div>
+```
+
+```{=html}
+<div class="callout-info">
+  <span class="callout-icon">💡</span>
+  <div>
+    <strong>Período disponível:</strong> para se manter rápida, a Vista Global carrega os últimos 180 dias e todas as atividades futuras. Os dados mais antigos não são apagados: continuam disponíveis no Power BI (ver <a href="#sec-cal-powerbi">Power BI</a>).
+  </div>
+</div>
+```
+
+### Importar a planificação anual {#sec-cal-importar}
+
+As equipas que já têm o plano anual das suas atividades (por exemplo, o calendário de colheitas) podem importá-lo de uma só vez, em vez de planear atividade a atividade.
+
+```{=html}
+<div class="step-card">
+  <div class="step-number">1</div>
+  <div class="step-title">Descarregar o modelo Excel</div>
+</div>
+```
+
+O [modelo da planificação anual](https://snspt.sharepoint.com/sites/USPBaixoVouga-piloto_calendario_partilhado/Documentos%20Partilhados/Modelo%20-%20Planifica%C3%A7%C3%A3o%20anual.xlsx) está em **Documentos** no site do piloto. Deve ser guardada uma cópia, mantendo o modelo original intacto.
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">📗 Modelo Excel da planificação anual</p>
+  <img src="ref/images/calendario/14_modelo.jpg" alt="Folha Planificação do modelo Excel" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span>Colunas da tabela "Atividades", a preencher uma linha por atividade. Os nomes das colunas não podem ser alterados.</span></li>
+    <li><span>Folhas do modelo: <strong>Instruções</strong>, <strong>Planificação</strong> (a preencher), <strong>Listas</strong> e <strong>Tipos</strong> (valores das listas de escolha; não alterar).</span></li>
+  </ol>
+</div>
+```
+
+---
+
+```{=html}
+<div class="step-card">
+  <div class="step-number">2</div>
+  <div class="step-title">Preencher a folha "Planificação"</div>
+</div>
+```
+
+Cada linha corresponde a uma atividade numa data. Uma colheita mensal ocupa, por isso, 12 linhas. A Unidade, o Programa, o Tipo de atividade, o Concelho e o "Eu participo" escolhem-se em listas: tal como na aplicação, **o Tipo de atividade só mostra os tipos do Programa escolhido** nessa linha, mais os transversais.
+
+| Coluna | Preenchimento |
+|---|---|
+| Data | Obrigatório. dd/mm/aaaa. Só são importadas datas futuras. |
+| Hora | Obrigatório. hh:mm (ex.: 09:30). |
+| Duração (min) | Opcional. Vazio = 60 minutos. |
+| Unidade | Obrigatório. Unidade cujo calendário recebe o evento. |
+| Programa | Obrigatório. Escolher primeiro o programa. |
+| Tipo de atividade | Obrigatório. Tem de pertencer ao programa indicado (ou ser transversal). |
+| Participantes (emails) | Emails institucionais separados por `;`, sem incluir o próprio. |
+| Eu participo | "Não" se só está a organizar. Vazio = Sim. |
+| Concelho, Local, Observações | Opcionais. |
+
+: Preenchimento do modelo da planificação anual {.striped .hover}
+
+Exemplo de linha preenchida:
+
+| Data | Hora | Duração | Unidade | Programa | Tipo de atividade | Participantes | Eu participo | Concelho | Local |
+|---|---|---|---|---|---|---|---|---|---|
+| 03/11/2026 | 09:30 | 90 | Vagos | PVSA (Águas) | Colheita - água para consumo humano | nome.apelido@ulsra.min-saude.pt | Sim | Vagos | ETAR Vagos |
+
+: Exemplo de uma atividade na planificação anual {.striped}
+
+---
+
+```{=html}
+<div class="step-card">
+  <div class="step-number">3</div>
+  <div class="step-title">Carregar o ficheiro na biblioteca "Planificação anual"</div>
+</div>
+```
+
+No ecrã inicial da aplicação, carregar em **Importar planificação anual**. Abre-se a biblioteca "Planificação anual" do SharePoint, onde se carrega o ficheiro preenchido.
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">📂 Biblioteca "Planificação anual" no SharePoint</p>
+  <img src="ref/images/calendario/13_biblioteca.jpg" alt="Biblioteca Planificação anual no SharePoint" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span><strong>Criar ou carregar:</strong> carregar o ficheiro Excel preenchido (também é possível arrastar o ficheiro para a lista).</span></li>
+    <li><span>Ficheiros já carregados.</span></li>
+  </ol>
+</div>
+```
+
+---
+
+```{=html}
+<div class="step-card">
+  <div class="step-number">4</div>
+  <div class="step-title">Validar o resumo recebido por e-mail</div>
+</div>
+```
+
+Poucos minutos depois de carregar o ficheiro, quem o carregou recebe um e-mail com o resumo da importação. **Nada é criado antes da aprovação.**
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">📧 E-mail de validação da importação</p>
+  <img src="ref/images/calendario/15_email_aprov.jpg" alt="E-mail de aprovação da importação da planificação anual" class="screenshot-img-wide" style="max-width:600px;"/>
+  <ol class="legend-list">
+    <li><span><strong>Aprovar:</strong> as atividades válidas são criadas na aplicação como Planeadas e os participantes recebem o convite. <strong>Rejeitar:</strong> nada é criado.</span></li>
+    <li><span>Atividades válidas, que serão criadas se aprovar.</span></li>
+    <li><span><strong>Linhas não importadas</strong>, com o motivo de cada uma (neste exemplo, um tipo de atividade que não pertence ao programa indicado).</span></li>
+  </ol>
+</div>
+```
+
+As linhas com erro não impedem a importação das restantes. Para as aproveitar, corrigir essas linhas e carregar um novo ficheiro só com elas. Carregar o mesmo ficheiro outra vez não duplica as atividades já importadas.
+
+**Motivos mais frequentes de recusa de uma linha:**
+
+- Data inválida ou já passada;
+- Hora fora do formato hh:mm;
+- Unidade ou programa desconhecido;
+- Tipo de atividade que não pertence ao programa indicado;
+- Email de participante sem perfil na aplicação;
+- "Eu participo" = Não sem outros participantes indicados;
+- Atividade já importada anteriormente.
+
+### Power BI {#sec-cal-powerbi}
+
+O [relatório Power BI](https://app.powerbi.com/groups/me/reports/bd7b052b-7195-4d46-a034-77ca22374388) reúne as atividades registadas na aplicação, sem limite de período, para análise e para a elaboração do Relatório de Atividades da USP. Se o Power BI pedir uma licença, escolher a avaliação gratuita de 60 dias.
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">📈 Relatório Power BI "Calendário USP - Atividades"</p>
+  <img src="ref/images/calendario/16_pbi.jpg" alt="Página Resumo do relatório Power BI" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span>Data da última atualização dos dados do relatório.</span></li>
+    <li><span><strong>Páginas:</strong> Resumo, Programas e tipos, Profissionais e Extração.</span></li>
+    <li><span>Indicadores principais, que respondem aos filtros de data, unidade, programa e categoria.</span></li>
+  </ol>
+</div>
+```
+
+Para extrair os dados, abrir a página **Extração** e, na tabela, escolher **⋯ → Exportar dados**: é gerado um ficheiro Excel com as atividades filtradas. O relatório completo pode ser exportado em PDF ou PowerPoint em **Exportar**, na barra superior.
+
+```{=html}
+<div class="callout-info">
+  <span class="callout-icon">💡</span>
+  <div>
+    <strong>Quem regista nem sempre participa:</strong> no Power BI e na Vista Global, as horas e as participações contam apenas os profissionais que participaram na atividade. A atividade conta sempre uma vez como realizada.
+  </div>
+</div>
+```
+
+### Situações Especiais {#sec-cal-especiais}
+
+#### Registar uma atividade em que não participa {#sec-cal-nao-participa}
+
+Desmarcar **"Eu participo nesta atividade"** e indicar os colegas em **Outros participantes**. Quem regista não recebe convite nem conta nas horas ou participações, mas continua a ver a atividade em "Os meus eventos" para a poder fechar, reagendar ou cancelar.
+
+#### Atividade com vários participantes {#sec-cal-varios}
+
+Todos os participantes veem a atividade em "Os meus eventos" e podem fechá-la. Assim que um deles indica o estado final, este é aplicado a todos, e fica registado quem o fez e quando. Não é necessário que cada participante feche a atividade.
+
+#### Atividade adiada sem nova data {#sec-cal-adiada}
+
+Em **Reagendar**, escolher "Ainda não sei a nova data". A atividade fica em **Por reagendar** na lista "Por fechar" de "Os meus eventos" até ser escolhida a nova data.
+
+#### Corrigir um registo {#sec-cal-corrigir}
+
+Abrir a atividade em "Os meus eventos" ou na Vista Global e carregar em **Editar**. Esta opção mantém-se disponível depois de a atividade estar realizada.
+
+#### O meu nome não aparece na lista de profissionais {#sec-cal-perfil}
+
+A aplicação usa a lista de perfis dos profissionais da USP. Se o seu nome, ou o de um colega, não aparecer como Profissional ou em Outros participantes, reportar a situação (ver secção <a href="#sec-reporte">Reporte de Ocorrências</a>).
 
 ## Reporte de Ocorrências {#sec-reporte}
 
@@ -237,17 +713,32 @@ Os sistemas de informação com automatizações não são infalíveis. É essen
 
 **Ocorrências a reportar:**
 
+*Boletins analíticos (PVSA e PSAC):*
+
 - Extração incorreta de valores (ex.: erro no pH ou parâmetro inserido na coluna errada);
 - Campos vazios no SharePoint que constem no boletim em PDF;
 - Incorreções na identificação do ponto ou da data de colheita;
-- Receção de boletim sem a respetiva notificação por e-mail ou omissão de registo na lista;
+- Receção de boletim sem a respetiva notificação por e-mail ou omissão de registo na lista.
+
+*Calendário Partilhado:*
+
+- Atividade planeada sem o respetivo evento no calendário da unidade, ou convite que não chegou a um participante;
+- Atividade que não aparece em "Os meus eventos" ou na Vista Global;
+- Programa ou tipo de atividade em falta no catálogo, ou que não corresponde à atividade real;
+- Profissional que não aparece na lista de profissionais ou de participantes;
+- Números da Vista Global ou do Power BI que não correspondem às atividades registadas;
+- Mensagens de erro na aplicação.
+
+*Geral:*
+
 - Qualquer comportamento atípico do sistema de informação.
 
 **Práticas a evitar:**
 
 - Alterar diretamente os dados incorretos na lista sem reportar o erro;
 - Assumir falhas de extração como exceções irrelevantes ou pontuais;
-- Ignorar omissões de preenchimento nas listas de resultados em campos que deviam estar preenchidos.
+- Ignorar omissões de preenchimento nas listas de resultados em campos que deviam estar preenchidos;
+- Registar de novo uma atividade que já tinha sido planeada, em vez de a marcar como Realizada.
 
 **Enviar email nos seguintes moldes:**
 
@@ -256,7 +747,7 @@ Os sistemas de informação com automatizações não são infalíveis. É essen
 | Para: | sbleca@ulsra.min-saude.pt |
 | CC (sempre): | usp.ulsra@ulsra.min-saude.pt ; equipa gestora do programa em que ocorreu o erro |
 | Assunto sugerido | Problema – Sistemas de Informação em Saúde Pública |
-| Corpo do e-mail: | Identificação do programa (ex.: PVSA, PSAC, etc.); número do boletim (`n_boletim`), se aplicável; descrição sucinta da anomalia (ex.: valor extraído pelo sistema vs. valor real no boletim). |
+| Corpo do e-mail: | Identificação do sistema (boletins analíticos ou Calendário Partilhado) e do programa (ex.: PVSA, PSAC, etc.); número do boletim (`n_boletim`) ou data, unidade e tipo da atividade, se aplicável; descrição sucinta da anomalia (ex.: valor extraído pelo sistema vs. valor real no boletim; evento que não chegou ao calendário). Se possível, juntar uma captura de ecrã. |
 
 : Template de email para reporte de ocorrências {.striped}
 
@@ -266,6 +757,10 @@ Os sistemas de informação com automatizações não são infalíveis. É essen
 |---|---|
 | Manual atualizado | [https://salomelecamd.github.io/sistemas_informacao_uspbv/](https://salomelecamd.github.io/sistemas_informacao_uspbv/) |
 | Site SharePoint USP | [https://snspt.sharepoint.com/sites/ARSC-ACESBV-USPBaixoVouga](https://snspt.sharepoint.com/sites/ARSC-ACESBV-USPBaixoVouga) |
+| Calendário Partilhado (aplicação) | [Abrir a aplicação](https://apps.powerapps.com/play/e/default-22c84608-f01d-46c5-8024-63cc962e5f51/a/50d606a5-77cc-4e8b-a6ee-1ebd49de9840?tenantId=22c84608-f01d-46c5-8024-63cc962e5f51) |
+| Calendário Partilhado (Power BI) | [Abrir o relatório](https://app.powerbi.com/groups/me/reports/bd7b052b-7195-4d46-a034-77ca22374388) |
+| Modelo da planificação anual | [Descarregar o modelo Excel](https://snspt.sharepoint.com/sites/USPBaixoVouga-piloto_calendario_partilhado/Documentos%20Partilhados/Modelo%20-%20Planifica%C3%A7%C3%A3o%20anual.xlsx) |
+| Biblioteca da planificação anual | [Carregar a planificação](https://snspt.sharepoint.com/sites/USPBaixoVouga-piloto_calendario_partilhado/planificacao_anual/Forms/AllItems.aspx) |
 | E-mail do projeto | usp.ulsra@ulsra.min-saude.pt |
 | Suporte técnico | sbleca@ulsra.min-saude.pt |
 
