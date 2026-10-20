@@ -546,7 +546,7 @@ A Vista Global mostra **todas as atividades da USP**. Cada atividade aparece uma
 
 ### Importar a planificação anual {#sec-cal-importar}
 
-As equipas que já têm o plano anual das suas atividades (por exemplo, o calendário de colheitas) podem importá-lo de uma só vez, em vez de planear atividade a atividade.
+As equipas que já têm o plano anual das suas atividades (por exemplo, o calendário de colheitas) podem importá-lo de uma só vez, em vez de planear atividade a atividade. O mesmo ficheiro pode incluir atividades já realizadas este ano: as linhas com data passada são registadas como **Realizadas**, sem evento no calendário nem convite, tal como em "Registar atividade".
 
 ```{=html}
 <div class="step-card">
@@ -581,7 +581,7 @@ Cada linha corresponde a uma atividade numa data. Uma colheita mensal ocupa, por
 
 | Coluna | Preenchimento |
 |---|---|
-| Data | Obrigatório. dd/mm/aaaa. Só são importadas datas futuras. |
+| Data | Obrigatório. dd/mm/aaaa. Datas futuras ficam Planeadas; datas passadas ficam registadas como Realizadas. |
 | Hora | Obrigatório. hh:mm (ex.: 09:30). |
 | Duração (min) | Opcional. Vazio = 60 minutos. |
 | Unidade | Obrigatório. Unidade cujo calendário recebe o evento. |
@@ -639,8 +639,8 @@ Poucos minutos depois de carregar o ficheiro, quem o carregou recebe um e-mail c
   <p class="screenshot-caption">📧 E-mail de validação da importação</p>
   <img src="ref/images/calendario/15_email_aprov.jpg" alt="E-mail de aprovação da importação da planificação anual" class="screenshot-img-wide" style="max-width:600px;"/>
   <ol class="legend-list">
-    <li><span><strong>Aprovar:</strong> as atividades válidas são criadas na aplicação como Planeadas e os participantes recebem o convite. <strong>Rejeitar:</strong> nada é criado.</span></li>
-    <li><span>Atividades válidas, que serão criadas se aprovar.</span></li>
+    <li><span><strong>Aprovar:</strong> as atividades de data futura são criadas como Planeadas e os participantes recebem o convite; as de data passada ficam registadas como Realizadas, sem convite. <strong>Rejeitar:</strong> nada é criado.</span></li>
+    <li><span>Atividades válidas, que serão criadas se aprovar. A coluna "Fica como" indica se cada uma fica Planeada ou Realizada (data passada).</span></li>
     <li><span><strong>Linhas não importadas</strong>, com o motivo de cada uma (neste exemplo, um tipo de atividade que não pertence ao programa indicado).</span></li>
   </ol>
 </div>
@@ -650,7 +650,7 @@ As linhas com erro não impedem a importação das restantes. Para as aproveitar
 
 **Motivos mais frequentes de recusa de uma linha:**
 
-- Data inválida ou já passada;
+- Data inválida;
 - Hora fora do formato hh:mm;
 - Unidade ou programa desconhecido;
 - Tipo de atividade que não pertence ao programa indicado;
