@@ -315,7 +315,7 @@ Nesta fase participam os Serviços Locais de Estarreja, de Albergaria-a-Velha e 
 
 A aplicação abre no navegador, através do [link da aplicação](https://apps.powerapps.com/play/e/default-22c84608-f01d-46c5-8024-63cc962e5f51/a/50d606a5-77cc-4e8b-a6ee-1ebd49de9840?tenantId=22c84608-f01d-46c5-8024-63cc962e5f51), com a conta institucional. Na primeira utilização pode surgir um pedido para permitir a ligação ao SharePoint: deve carregar em **Permitir**.
 
-O ecrã inicial dá acesso a todas as funcionalidades:
+O ecrã inicial dá acesso a todas as funcionalidades. No canto inferior esquerdo aparece a versão da aplicação (por exemplo, "v0.10.0-beta · build 44"), útil para indicar ao reportar uma ocorrência.
 
 ```{=html}
 <div class="screenshot-box">
@@ -469,7 +469,7 @@ Depois da data da atividade, é necessário indicar o que aconteceu. Ao clicar n
     <li><span><strong>Realizada:</strong> a atividade aconteceu. Passa a verde e conta como realizada no Power BI.</span></li>
     <li><span><strong>Reagendar:</strong> a atividade foi adiada. Indicar a nova data, ou escolher "Ainda não sei a nova data"; neste caso fica em "Por reagendar" até ser escolhida a data.</span></li>
     <li><span><strong>Cancelar:</strong> a atividade não se vai realizar. O evento é cancelado no calendário da unidade.</span></li>
-    <li><span><strong>Editar:</strong> corrigir dados da atividade (duração, tipo, participantes, local, etc.).</span></li>
+    <li><span><strong>Editar:</strong> corrigir dados da atividade (duração, tipo, participantes, local, etc.). A data e a hora só podem ser mudadas aqui durante um período curto (ver <a href="#sec-cal-data">Mudar a data de uma atividade</a>).</span></li>
   </ol>
 </div>
 ```
@@ -498,7 +498,13 @@ Depois da data da atividade, é necessário indicar o que aconteceu. Ao clicar n
 
 ### Vista Global {#sec-cal-global}
 
-A Vista Global mostra **todas as atividades da USP**. Cada atividade aparece uma única vez, mesmo que tenha vários participantes. Cada profissional pode alterar as suas atividades; a Coordenação pode alterar todas.
+A Vista Global mostra **todas as atividades da USP**. Cada atividade aparece uma única vez, mesmo que tenha vários participantes. Cada profissional pode alterar as atividades em que participa ou que organizou. Além disso:
+
+- a **Coordenação** pode alterar todas as atividades;
+- o **coordenador dos TSA** (José Manuel Cerdeira) pode alterar as atividades em que participa algum TSA;
+- a **coordenadora dos Enfermeiros** (Carmen Santos) pode alterar as atividades em que participa algum Enfermeiro de Saúde Pública.
+
+Numa atividade com profissionais das duas categorias, ambos os coordenadores a podem alterar.
 
 ```{=html}
 <div class="screenshot-box">
@@ -701,7 +707,18 @@ Em **Reagendar**, escolher "Ainda não sei a nova data". A atividade fica em **P
 
 #### Corrigir um registo {#sec-cal-corrigir}
 
-Abrir a atividade em "Os meus eventos" ou na Vista Global e carregar em **Editar**. Esta opção mantém-se disponível depois de a atividade estar realizada.
+Abrir a atividade em "Os meus eventos" ou na Vista Global e carregar em **Editar**. Esta opção mantém-se disponível depois de a atividade estar realizada. A data e a hora seguem a regra descrita a seguir.
+
+#### Mudar a data de uma atividade {#sec-cal-data}
+
+Para que todas as mudanças de data fiquem registadas, a data e a hora só podem ser alteradas em **Editar** durante um período curto:
+
+- **No dia em que a atividade é criada**, para corrigir enganos;
+- **Atividades importadas da planificação anual:** durante os **7 dias** seguintes à importação.
+
+Depois disso, no ecrã "Editar atividade", a data e a hora aparecem a cinzento, com a nota **"🔒 Para mudar a data, use Adiar."** Os restantes campos (local, observações, participantes, concelho, etc.) continuam editáveis.
+
+Para mudar a data a partir daí, usar **Reagendar** no detalhe da atividade (ver <a href="#sec-cal-fechar">Fechar uma atividade</a>). A mudança fica registada nas atividades adiadas. A Coordenação pode mudar a data e a hora em qualquer altura.
 
 #### O meu nome não aparece na lista de profissionais {#sec-cal-perfil}
 
