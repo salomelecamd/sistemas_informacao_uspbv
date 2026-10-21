@@ -315,7 +315,7 @@ Nesta fase participam os Serviços Locais de Estarreja, de Albergaria-a-Velha e 
 
 A aplicação abre no navegador, através do [link da aplicação](https://apps.powerapps.com/play/e/default-22c84608-f01d-46c5-8024-63cc962e5f51/a/50d606a5-77cc-4e8b-a6ee-1ebd49de9840?tenantId=22c84608-f01d-46c5-8024-63cc962e5f51), com a conta institucional. Na primeira utilização pode surgir um pedido para permitir a ligação ao SharePoint: deve carregar em **Permitir**.
 
-O ecrã inicial dá acesso a todas as funcionalidades. No canto inferior esquerdo aparece a versão da aplicação (por exemplo, "v0.10.0-beta · build 44"), útil para indicar ao reportar uma ocorrência.
+O ecrã inicial dá acesso a todas as funcionalidades. No canto inferior esquerdo aparece a versão da aplicação (por exemplo, "v0.11.0-beta · build 49"), útil para indicar ao reportar uma ocorrência (ver <a href="#sec-cal-versao">Versões da aplicação</a>).
 
 ```{=html}
 <div class="screenshot-box">
@@ -362,7 +362,7 @@ No ecrã inicial, carregar em **Planear atividade**. Os campos assinalados com a
     <li><span><strong>Duração (minutos):</strong> tempo previsto da atividade.</span></li>
     <li><span><strong>Outros participantes:</strong> colegas que também participam. Cada um recebe convite no seu calendário.</span></li>
     <li><span><strong>Eu participo nesta atividade:</strong> vem marcado. Desmarcar se está apenas a registar uma atividade de colegas (ver <a href="#sec-cal-especiais">Situações Especiais</a>).</span></li>
-    <li><span><strong>Guardar:</strong> grava a atividade e volta ao ecrã inicial.</span></li>
+    <li><span><strong>Guardar:</strong> grava a atividade e volta ao ecrã inicial. Antes de gravar, a aplicação verifica se há conflito de agenda (ver <a href="#sec-cal-conflito">Conflito de agenda</a>).</span></li>
   </ol>
 </div>
 ```
@@ -473,6 +473,22 @@ Depois da data da atividade, é necessário indicar o que aconteceu. Ao clicar n
   </ol>
 </div>
 ```
+
+**Motivo obrigatório ao reagendar ou cancelar.** Na janela de Reagendar ou de Cancelar aparece o campo **"Motivo do adiamento (obrigatório)"** ou **"Motivo do cancelamento (obrigatório)"**. Os botões de confirmação ("Passar para esta data", "Ainda não sei a nova data", "Sim, cancelar") só ficam ativos depois de escolhido o motivo. Se for escolhido **"Outro"**, é obrigatório descrever o motivo no campo "Descreva o motivo". O motivo fica registado, com quem fez a alteração e quando.
+
+| Motivos disponíveis | Reagendar | Cancelar |
+|---|:-:|:-:|
+| Indisponibilidade do profissional (doença, férias, ausência) | ✓ | ✓ |
+| Sobreposição com outra atividade | ✓ | ✓ |
+| Prioridade a resposta urgente (surto, Autoridade de Saúde) | ✓ | ✓ |
+| Pedido da entidade externa ou parceiro | ✓ | ✓ |
+| Falta de viatura ou recursos | ✓ | ✓ |
+| Condições meteorológicas | ✓ | ✓ |
+| Atividade deixou de ser necessária |  | ✓ |
+| Registo duplicado ou por engano |  | ✓ |
+| Outro (descrever) | ✓ | ✓ |
+
+: Motivos de adiamento e de cancelamento {.striped .hover}
 
 **Basta um participante fechar a atividade:** o estado muda para todos os participantes e o calendário é atualizado. Fica registado quem alterou o estado e quando. Depois de uma atividade estar Realizada ou Cancelada, os botões de estado deixam de aparecer e resta apenas a opção **Editar**, para correções.
 
@@ -702,6 +718,19 @@ Desmarcar **"Eu participo nesta atividade"** e indicar os colegas em **Outros pa
 
 Todos os participantes veem a atividade em "Os meus eventos" e podem fechá-la. Assim que um deles indica o estado final, este é aplicado a todos, e fica registado quem o fez e quando. Não é necessário que cada participante feche a atividade.
 
+#### Conflito de agenda {#sec-cal-conflito}
+
+Ao gravar uma atividade (Planear, Registar ou Editar), a aplicação verifica se o profissional ou algum dos outros participantes já tem outra atividade no mesmo horário. As atividades canceladas e as que estão por reagendar não contam; quando a duração não está preenchida, considera-se 60 minutos.
+
+Se houver sobreposição, aparece a janela **"⚠ Conflito de agenda"**, com a lista das atividades em causa e duas opções:
+
+- **Rever:** volta ao formulário sem gravar, para corrigir a data, a hora ou os participantes;
+- **Guardar mesmo assim:** grava a atividade (por exemplo, quando as duas atividades se realizam de facto em simultâneo).
+
+Em "Os meus eventos", as atividades em conflito aparecem com o símbolo **⚠** antes da hora, nas vistas Dia, Semana e Mês.
+
+Além disso, quando uma atividade é criada ou alterada e coincide no horário com outra do mesmo profissional, este recebe um e-mail **"Conflito de agenda: …"** com as atividades sobrepostas. Se a atividade foi registada por outra pessoa, essa pessoa recebe cópia. O aviso é enviado uma única vez para cada data e hora. Perante este e-mail, verificar se se trata de um registo duplicado ou se ambas as atividades se mantêm, e ajustar em "Os meus eventos" se necessário.
+
 #### Atividade adiada sem nova data {#sec-cal-adiada}
 
 Em **Reagendar**, escolher "Ainda não sei a nova data". A atividade fica em **Por reagendar** na lista "Por fechar" de "Os meus eventos" até ser escolhida a nova data.
@@ -724,6 +753,22 @@ Para mudar a data a partir daí, usar **Reagendar** no detalhe da atividade (ver
 #### O meu nome não aparece na lista de profissionais {#sec-cal-perfil}
 
 A aplicação usa a lista de perfis dos profissionais da USP. Se o seu nome, ou o de um colega, não aparecer como Profissional ou em Outros participantes, reportar a situação (ver secção <a href="#sec-reporte">Reporte de Ocorrências</a>).
+
+### Versões da aplicação {#sec-cal-versao}
+
+A versão da aplicação aparece no canto inferior esquerdo do ecrã inicial (por exemplo, **v0.11.0-beta · build 49**). A numeração segue esta regra:
+
+| Parte | Significado |
+|---|---|
+| 3.º número (ex.: 0.11.**1**) | Correção de erros |
+| 2.º número (ex.: 0.**12**.0) | Nova funcionalidade |
+| 1.º número (**1**.0.0) | Lançamento para todos os profissionais da USP |
+| beta | Fase piloto, com um grupo restrito de utilizadores |
+| build | Número interno da versão gravada |
+
+: Numeração das versões da aplicação {.striped}
+
+Ao reportar uma ocorrência, indicar a versão que aparece no ecrã.
 
 ## Reporte de Ocorrências {#sec-reporte}
 
