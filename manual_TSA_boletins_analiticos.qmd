@@ -500,11 +500,12 @@ Depois da data da atividade, é necessário indicar o que aconteceu. Ao clicar n
 
 A Vista Global mostra **todas as atividades da USP**. Cada atividade aparece uma única vez, mesmo que tenha vários participantes. Cada profissional pode alterar as atividades em que participa ou que organizou. Além disso:
 
-- a **Coordenação** pode alterar todas as atividades;
-- o **coordenador dos TSA** (José Manuel Cerdeira) pode alterar as atividades em que participa algum TSA;
-- a **coordenadora dos Enfermeiros** (Carmen Santos) pode alterar as atividades em que participa algum Enfermeiro de Saúde Pública.
+- o **Coordenador da USP** pode alterar todas as atividades;
+- o **Coordenador dos TSA** pode alterar as atividades em que participa algum TSA;
+- o **Coordenador dos Enfermeiros** pode alterar as atividades em que participa algum Enfermeiro de Saúde Pública;
+- o **Coordenador dos AT** pode alterar as atividades em que participa algum AT.
 
-Numa atividade com profissionais das duas categorias, ambos os coordenadores a podem alterar.
+Numa atividade com profissionais de várias categorias, cada um dos respetivos coordenadores a pode alterar.
 
 ```{=html}
 <div class="screenshot-box">
@@ -718,7 +719,7 @@ Para que todas as mudanças de data fiquem registadas, a data e a hora só podem
 
 Depois disso, no ecrã "Editar atividade", a data e a hora aparecem a cinzento, com a nota **"🔒 Para mudar a data, use Adiar."** Os restantes campos (local, observações, participantes, concelho, etc.) continuam editáveis.
 
-Para mudar a data a partir daí, usar **Reagendar** no detalhe da atividade (ver <a href="#sec-cal-fechar">Fechar uma atividade</a>). A mudança fica registada nas atividades adiadas. A Coordenação (Rui Leitão) pode mudar a data e a hora em qualquer altura.
+Para mudar a data a partir daí, usar **Reagendar** no detalhe da atividade (ver <a href="#sec-cal-fechar">Fechar uma atividade</a>). A mudança fica registada nas atividades adiadas. O Coordenador da USP pode mudar a data e a hora em qualquer altura.
 
 #### O meu nome não aparece na lista de profissionais {#sec-cal-perfil}
 
