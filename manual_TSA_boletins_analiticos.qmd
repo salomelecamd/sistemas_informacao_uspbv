@@ -315,7 +315,7 @@ Nesta fase participam os Serviços Locais de Estarreja, de Albergaria-a-Velha e 
 
 A aplicação abre no navegador, através do [link da aplicação](https://apps.powerapps.com/play/e/default-22c84608-f01d-46c5-8024-63cc962e5f51/a/50d606a5-77cc-4e8b-a6ee-1ebd49de9840?tenantId=22c84608-f01d-46c5-8024-63cc962e5f51), com a conta institucional. Na primeira utilização pode surgir um pedido para permitir a ligação ao SharePoint: deve carregar em **Permitir**.
 
-O ecrã inicial dá acesso a todas as funcionalidades. No canto inferior esquerdo aparece a versão da aplicação (por exemplo, "v0.12.0-beta · build 54"), útil para indicar ao reportar uma ocorrência (ver <a href="#sec-cal-versao">Versões da aplicação</a>).
+O ecrã inicial dá acesso a todas as funcionalidades. No canto inferior esquerdo aparece a versão da aplicação (por exemplo, "v0.11.0-beta · build 49"), útil para indicar ao reportar uma ocorrência (ver <a href="#sec-cal-versao">Versões da aplicação</a>).
 
 ```{=html}
 <div class="screenshot-box">
@@ -327,7 +327,6 @@ O ecrã inicial dá acesso a todas as funcionalidades. No canto inferior esquerd
     <li><span><strong>Os meus eventos:</strong> as atividades em que participa ou que organizou, e as que estão por fechar.</span></li>
     <li><span><strong>Vista Global:</strong> todas as atividades da USP, com filtros e resumo em números.</span></li>
     <li><span><strong>Importar planificação anual:</strong> abre a biblioteca onde se carrega o modelo Excel preenchido.</span></li>
-    <li><span><strong>Versão da aplicação</strong> (ver <a href="#sec-cal-versao">Versões da aplicação</a>).</span></li>
   </ol>
 </div>
 ```
@@ -359,8 +358,8 @@ No ecrã inicial, carregar em **Planear atividade**. Os campos assinalados com a
   <ol class="legend-list">
     <li><span><strong>Programa:</strong> escolher primeiro o programa ou área de intervenção.</span></li>
     <li><span><strong>Tipo de atividade:</strong> mostra apenas os tipos do programa escolhido (ver passo 2).</span></li>
-    <li><span><strong>Data e hora:</strong> tem de ser uma data futura. O calendário fecha-se sozinho ao escolher o dia (ver passo 3).</span></li>
-    <li><span><strong>Duração:</strong> um clique num dos botões rápidos; por cima aparece o resumo (ex.: "Duração: 1 h 30 min").</span></li>
+    <li><span><strong>Data e hora:</strong> tem de ser uma data futura.</span></li>
+    <li><span><strong>Duração (minutos):</strong> tempo previsto da atividade.</span></li>
     <li><span><strong>Outros participantes:</strong> colegas que também participam. Cada um recebe convite no seu calendário.</span></li>
     <li><span><strong>Eu participo nesta atividade:</strong> vem marcado. Desmarcar se está apenas a registar uma atividade de colegas (ver <a href="#sec-cal-especiais">Situações Especiais</a>).</span></li>
     <li><span><strong>Guardar:</strong> grava a atividade e volta ao ecrã inicial. Antes de gravar, a aplicação verifica se há conflito de agenda (ver <a href="#sec-cal-conflito">Conflito de agenda</a>).</span></li>
@@ -395,44 +394,6 @@ Os programas e os tipos de atividade vêm do **catálogo de atividades da USP**,
 ```{=html}
 <div class="step-card">
   <div class="step-number">3</div>
-  <div class="step-title">Indicar a data, a hora e a duração</div>
-</div>
-```
-
-**Data:** ao carregar no campo da data abre-se um calendário. Basta escolher o dia: o calendário fecha-se sozinho, sem botões de confirmação. A hora e os minutos escolhem-se nas listas ao lado.
-
-```{=html}
-<div class="screenshot-box">
-  <p class="screenshot-caption">📅 Escolha da data</p>
-  <img src="ref/images/calendario/02c_calendario.jpg" alt="Calendário para escolha da data da atividade" class="screenshot-img-wide"/>
-  <ol class="legend-list">
-    <li><span>Calendário do mês: um clique no dia escolhe a data e fecha o calendário. As setas mudam de mês; à direita escolhe-se o mês ou o ano.</span></li>
-    <li><span>Data escolhida, seguida da hora e dos minutos.</span></li>
-  </ol>
-</div>
-```
-
-**Duração:** escolhe-se com um clique num dos botões rápidos (**15 min · 30 min · 1 h · 1h30 · 2 h · 3 h · 4 h · Dia 7h**). Para outra duração, carregar em **Outra…** e escolher as horas (0 a 12) e os minutos (00, 15, 30 ou 45); o botão **Botões** volta aos botões rápidos. Por cima aparece sempre o resumo da duração escolhida.
-
-```{=html}
-<div class="screenshot-box">
-  <p class="screenshot-caption">⏱️ Duração personalizada ("Outra…")</p>
-  <img src="ref/images/calendario/02b_duracao_outra.jpg" alt="Escolha da duração em horas e minutos" class="screenshot-img-wide"/>
-  <ol class="legend-list">
-    <li><span>Horas e minutos da duração.</span></li>
-    <li><span><strong>Botões:</strong> volta aos botões rápidos.</span></li>
-    <li><span>Resumo da duração escolhida.</span></li>
-  </ol>
-</div>
-```
-
-Ao **editar** uma atividade, o botão correspondente à duração gravada aparece selecionado; se a duração não for nenhuma das rápidas, abre-se diretamente "Outra…", já preenchida.
-
----
-
-```{=html}
-<div class="step-card">
-  <div class="step-number">4</div>
   <div class="step-title">Completar os restantes campos e guardar</div>
 </div>
 ```
@@ -443,7 +404,7 @@ Indicar o **profissional**, a **categoria profissional** e a **unidade** (polo, 
 
 ```{=html}
 <div class="step-card">
-  <div class="step-number">5</div>
+  <div class="step-number">4</div>
   <div class="step-title">Confirmar o evento no calendário</div>
 </div>
 ```
@@ -463,7 +424,7 @@ O formulário **Registar atividade** é igual ao de planeamento, com duas difere
   <img src="ref/images/calendario/04_registar.jpg" alt="Formulário de registo de atividade realizada" class="screenshot-img-wide"/>
   <ol class="legend-list">
     <li><span>O título confirma que está a registar uma atividade já realizada.</span></li>
-    <li><span><strong>Data e hora:</strong> a data em que a atividade aconteceu (hoje ou anterior). A duração escolhe-se como em "Planear atividade".</span></li>
+    <li><span><strong>Data e hora:</strong> a data em que a atividade aconteceu (hoje ou anterior).</span></li>
     <li><span><strong>Eu participo nesta atividade:</strong> desmarcar se está apenas a registar uma atividade realizada por colegas e, nesse caso, indicar os participantes.</span></li>
   </ol>
 </div>
@@ -506,7 +467,7 @@ Depois da data da atividade, é necessário indicar o que aconteceu. Ao clicar n
   <img src="ref/images/calendario/07_detalhe_porfechar.jpg" alt="Janela de detalhe com os botões Realizada, Reagendar, Cancelar e Editar" class="screenshot-img-wide"/>
   <ol class="legend-list">
     <li><span><strong>Realizada:</strong> a atividade aconteceu. Passa a verde e conta como realizada no Power BI.</span></li>
-    <li><span><strong>Reagendar:</strong> a atividade foi adiada. Indicar a nova data (no mesmo calendário, que se fecha ao escolher o dia), ou escolher "Ainda não sei a nova data"; neste caso fica em "Por reagendar" até ser escolhida a data.</span></li>
+    <li><span><strong>Reagendar:</strong> a atividade foi adiada. Indicar a nova data, ou escolher "Ainda não sei a nova data"; neste caso fica em "Por reagendar" até ser escolhida a data.</span></li>
     <li><span><strong>Cancelar:</strong> a atividade não se vai realizar. O evento é cancelado no calendário da unidade.</span></li>
     <li><span><strong>Editar:</strong> corrigir dados da atividade (duração, tipo, participantes, local, etc.). A data e a hora só podem ser mudadas aqui durante um período curto (ver <a href="#sec-cal-data">Mudar a data de uma atividade</a>).</span></li>
   </ol>
@@ -795,7 +756,7 @@ A aplicação usa a lista de perfis dos profissionais da USP. Se o seu nome, ou 
 
 ### Versões da aplicação {#sec-cal-versao}
 
-A versão da aplicação aparece no canto inferior esquerdo do ecrã inicial (por exemplo, **v0.12.0-beta · build 54**). A numeração segue esta regra:
+A versão da aplicação aparece no canto inferior esquerdo do ecrã inicial (por exemplo, **v0.11.0-beta · build 49**). A numeração segue esta regra:
 
 | Parte | Significado |
 |---|---|
