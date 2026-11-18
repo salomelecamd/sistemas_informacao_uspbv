@@ -299,6 +299,7 @@ Nesta fase participam os Serviços Locais de Estarreja, de Albergaria-a-Velha e 
       <td>
         <ol>
           <li>Registo de cada atividade na aplicação, com programa e tipo de atividade do catálogo da USP;</li>
+          <li>Atividades periódicas criadas de uma só vez e participantes adicionados por grupo (categoria, equipa ou unidade);</li>
           <li>Criação automática do evento no calendário da unidade e envio automático dos convites;</li>
           <li>Vista Global com todas as atividades da USP, com filtros e resumo em números;</li>
           <li>Importação da planificação anual a partir de um modelo Excel;</li>
@@ -315,7 +316,7 @@ Nesta fase participam os Serviços Locais de Estarreja, de Albergaria-a-Velha e 
 
 A aplicação abre no navegador, através do [link da aplicação](https://apps.powerapps.com/play/e/default-22c84608-f01d-46c5-8024-63cc962e5f51/a/50d606a5-77cc-4e8b-a6ee-1ebd49de9840?tenantId=22c84608-f01d-46c5-8024-63cc962e5f51), com a conta institucional. Na primeira utilização pode surgir um pedido para permitir a ligação ao SharePoint: deve carregar em **Permitir**.
 
-O ecrã inicial dá acesso a todas as funcionalidades. No canto inferior esquerdo aparece a versão da aplicação (por exemplo, "v0.11.0-beta · build 49"), útil para indicar ao reportar uma ocorrência (ver <a href="#sec-cal-versao">Versões da aplicação</a>).
+O ecrã inicial dá acesso a todas as funcionalidades. No canto inferior esquerdo aparece a versão da aplicação (por exemplo, "v0.15.0-beta · build 67"), útil para indicar ao reportar uma ocorrência (ver <a href="#sec-cal-versao">Versões da aplicação</a>).
 
 ```{=html}
 <div class="screenshot-box">
@@ -327,6 +328,7 @@ O ecrã inicial dá acesso a todas as funcionalidades. No canto inferior esquerd
     <li><span><strong>Os meus eventos:</strong> as atividades em que participa ou que organizou, e as que estão por fechar.</span></li>
     <li><span><strong>Vista Global:</strong> todas as atividades da USP, com filtros e resumo em números.</span></li>
     <li><span><strong>Importar planificação anual:</strong> abre a biblioteca onde se carrega o modelo Excel preenchido.</span></li>
+    <li><span><strong>Versão da aplicação</strong> (ver <a href="#sec-cal-versao">Versões da aplicação</a>).</span></li>
   </ol>
 </div>
 ```
@@ -358,9 +360,12 @@ No ecrã inicial, carregar em **Planear atividade**. Os campos assinalados com a
   <ol class="legend-list">
     <li><span><strong>Programa:</strong> escolher primeiro o programa ou área de intervenção.</span></li>
     <li><span><strong>Tipo de atividade:</strong> mostra apenas os tipos do programa escolhido (ver passo 2).</span></li>
-    <li><span><strong>Data e hora:</strong> tem de ser uma data futura.</span></li>
-    <li><span><strong>Duração (minutos):</strong> tempo previsto da atividade.</span></li>
+    <li><span><strong>Data e hora de início:</strong> tem de ser uma data futura (ver passo 3).</span></li>
+    <li><span><strong>Hora de término:</strong> calculada a partir da duração; também pode ser escolhida, e então é a duração que é calculada.</span></li>
+    <li><span><strong>↻ Repetir…:</strong> para atividades periódicas (ver passo 4).</span></li>
+    <li><span><strong>Duração:</strong> um clique num dos botões rápidos, ou "Outra…" para indicar horas e minutos.</span></li>
     <li><span><strong>Outros participantes:</strong> colegas que também participam. Cada um recebe convite no seu calendário.</span></li>
+    <li><span><strong>Adicionar grupo:</strong> acrescenta de uma vez todos os profissionais de uma categoria, equipa ou unidade (ver passo 5).</span></li>
     <li><span><strong>Eu participo nesta atividade:</strong> vem marcado. Desmarcar se está apenas a registar uma atividade de colegas (ver <a href="#sec-cal-especiais">Situações Especiais</a>).</span></li>
     <li><span><strong>Guardar:</strong> grava a atividade e volta ao ecrã inicial. Antes de gravar, a aplicação verifica se há conflito de agenda (ver <a href="#sec-cal-conflito">Conflito de agenda</a>).</span></li>
   </ol>
@@ -376,7 +381,7 @@ No ecrã inicial, carregar em **Planear atividade**. Os campos assinalados com a
 </div>
 ```
 
-Os programas e os tipos de atividade vêm do **catálogo de atividades da USP**, construído a partir do Relatório de Atividades e validado pelas equipas de cada programa. Depois de escolhido o programa, a lista do tipo de atividade mostra apenas os tipos desse programa, seguidos dos tipos **transversais** (reuniões, formação, apoio administrativo), comuns a todos os programas. É possível escrever parte do nome para filtrar a lista.
+Os programas e os tipos de atividade vêm do **catálogo de atividades da USP**, construído a partir do Relatório de Atividades e validado pelas equipas de cada programa. Depois de escolhido o programa, a lista do tipo de atividade mostra apenas os tipos desse programa, seguidos dos tipos **transversais** (reuniões, formação, apoio administrativo), comuns a todos os programas. É possível escrever parte do nome para filtrar a lista, mas o programa e o tipo têm de ser **escolhidos da lista**: escrever apenas o texto não é aceite.
 
 ```{=html}
 <div class="screenshot-box">
@@ -394,17 +399,80 @@ Os programas e os tipos de atividade vêm do **catálogo de atividades da USP**,
 ```{=html}
 <div class="step-card">
   <div class="step-number">3</div>
-  <div class="step-title">Completar os restantes campos e guardar</div>
+  <div class="step-title">Indicar a data, a hora e a duração</div>
 </div>
 ```
 
-Indicar o **profissional**, a **categoria profissional** e a **unidade** (polo, serviço ou equipa) cujo calendário recebe o evento. O concelho, o local, as coordenadas GPS e as observações são opcionais, mas ajudam a contextualizar a atividade e a analisá-la mais tarde. Carregar em **Guardar**.
+- **Data:** ao carregar no campo abre-se um calendário. Basta escolher o dia: o calendário fecha-se sozinho.
+- **Hora de início:** escolhe-se a hora e os minutos (00, 15, 30 ou 45). Também se pode escrever na caixa: por exemplo, "14" na hora, ou "4" nos minutos para escolher 45, seguido de Enter.
+- **Duração:** um clique num dos botões rápidos (**15 min · 30 min · 1 h · 1h30 · 2 h · 3 h · 4 h · Dia 7h**). Para outra duração, carregar em **Outra…** e indicar as horas e os minutos.
+- **Hora de término:** é preenchida automaticamente a partir da duração. Em alternativa, pode escolher-se a hora de término e a duração é calculada. Se a hora de término for anterior à de início, aparece a mensagem "A hora de término tem de ser depois da hora de início."
 
 ---
 
 ```{=html}
 <div class="step-card">
   <div class="step-number">4</div>
+  <div class="step-title">Atividades periódicas (opcional)</div>
+</div>
+```
+
+Para uma atividade que se repete (por exemplo, uma colheita semanal ou uma reunião mensal), carregar em **↻ Repetir…**, por baixo da data. Abre-se o painel "Repetir atividade":
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">↻ Painel "Repetir atividade"</p>
+  <img src="ref/images/calendario/02r_repetir.jpg" alt="Painel para repetir a atividade" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span><strong>Repetir a cada:</strong> de 1 a 12 dias, semanas ou meses.</span></li>
+    <li><span><strong>Dias da semana</strong> (só na repetição semanal): um clique em cada dia em que a atividade se realiza.</span></li>
+    <li><span><strong>Até:</strong> data da última repetição.</span></li>
+    <li><span>Resumo: quantas atividades serão criadas e entre que datas (no máximo 52).</span></li>
+    <li><span><strong>Aplicar:</strong> confirma a repetição.</span></li>
+    <li><span><strong>Não repetir:</strong> desliga a repetição.</span></li>
+  </ol>
+</div>
+```
+
+Ao guardar, **cada repetição fica uma atividade própria**, com o seu evento no calendário e o seu registo no Power BI, e é fechada (Realizada, Reagendar, Cancelar) de forma independente. Para cancelar várias de uma vez, ver <a href="#sec-cal-serie">Cancelar uma série de atividades</a>.
+
+---
+
+```{=html}
+<div class="step-card">
+  <div class="step-number">5</div>
+  <div class="step-title">Completar os restantes campos e guardar</div>
+</div>
+```
+
+Indicar o **profissional**, a **categoria profissional** e a **unidade** (polo, serviço ou equipa) cujo calendário recebe o evento. O concelho, o local, as coordenadas GPS e as observações são opcionais, mas ajudam a contextualizar a atividade e a analisá-la mais tarde.
+
+Os colegas que também participam indicam-se em **Outros participantes**. Para reuniões de classe ou de equipa (por exemplo, a Equipa de Gestão e da Qualidade), o campo **Adicionar grupo** acrescenta de uma vez todos os profissionais de:
+
+- uma **categoria** (por exemplo, "Categoria: TSA");
+- uma **equipa** transversal (por exemplo, "Equipa: EGQ");
+- uma **unidade** (por exemplo, "Unidade: Estarreja").
+
+Depois é possível retirar pessoas uma a uma.
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">👥 Adicionar participantes por grupo</p>
+  <img src="ref/images/calendario/02g_grupo.jpg" alt="Lista de grupos: categorias, equipas e unidades" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span><strong>Adicionar grupo:</strong> carregar para abrir a lista.</span></li>
+    <li><span>Grupos disponíveis: categorias profissionais, equipas e unidades.</span></li>
+  </ol>
+</div>
+```
+
+Uma atividade tem de ter **pelo menos um participante**: se desmarcar "Eu participo nesta atividade", tem de indicar alguém em Outros participantes. Carregar em **Guardar**.
+
+---
+
+```{=html}
+<div class="step-card">
+  <div class="step-number">6</div>
   <div class="step-title">Confirmar o evento no calendário</div>
 </div>
 ```
@@ -416,7 +484,8 @@ Alguns instantes depois de guardar, o sistema cria o evento no **calendário par
 O formulário **Registar atividade** é igual ao de planeamento, com duas diferenças:
 
 - a data e hora não pode ser futura;
-- a atividade fica logo com o estado **Realizada**.
+- a atividade fica logo com o estado **Realizada**;
+- não tem a opção "↻ Repetir…".
 
 ```{=html}
 <div class="screenshot-box">
@@ -424,7 +493,7 @@ O formulário **Registar atividade** é igual ao de planeamento, com duas difere
   <img src="ref/images/calendario/04_registar.jpg" alt="Formulário de registo de atividade realizada" class="screenshot-img-wide"/>
   <ol class="legend-list">
     <li><span>O título confirma que está a registar uma atividade já realizada.</span></li>
-    <li><span><strong>Data e hora:</strong> a data em que a atividade aconteceu (hoje ou anterior).</span></li>
+    <li><span><strong>Data e hora de início:</strong> a data em que a atividade aconteceu (hoje ou anterior). A hora e a duração indicam-se como em "Planear atividade".</span></li>
     <li><span><strong>Eu participo nesta atividade:</strong> desmarcar se está apenas a registar uma atividade realizada por colegas e, nesse caso, indicar os participantes.</span></li>
   </ol>
 </div>
@@ -457,6 +526,23 @@ Este ecrã mostra, em calendário, as atividades em que participa ou que organiz
 </div>
 ```
 
+A vista **Semana** mostra sempre de segunda-feira a domingo. Na vista **Mês**, clicar no número de um dia abre esse dia na vista **Dia**.
+
+**Criar uma atividade a partir do calendário.** Clicar num espaço vazio do calendário (um dia, ou uma hora na vista Dia ou Semana) abre a janela "Nova atividade", já com o dia escolhido. Ao confirmar, abre-se o formulário com a data e a hora preenchidas.
+
+```{=html}
+<div class="screenshot-box">
+  <p class="screenshot-caption">➕ Nova atividade a partir do calendário</p>
+  <img src="ref/images/calendario/05_nova_atividade.jpg" alt="Janela Nova atividade aberta a partir do calendário" class="screenshot-img-wide"/>
+  <ol class="legend-list">
+    <li><span>Dia em que se clicou no calendário.</span></li>
+    <li><span><strong>Hora de início:</strong> pode ser ajustada aqui.</span></li>
+    <li><span>A aplicação indica se a data e hora já passaram ou não.</span></li>
+    <li><span><strong>Planear atividade</strong> (data futura) ou <strong>Registar atividade</strong> (data passada): abre o formulário correspondente, já preenchido com a data e a hora.</span></li>
+  </ol>
+</div>
+```
+
 #### Fechar uma atividade {#sec-cal-fechar}
 
 Depois da data da atividade, é necessário indicar o que aconteceu. Ao clicar numa atividade **por fechar**, abre-se a janela de detalhe com as opções disponíveis:
@@ -469,7 +555,7 @@ Depois da data da atividade, é necessário indicar o que aconteceu. Ao clicar n
     <li><span><strong>Realizada:</strong> a atividade aconteceu. Passa a verde e conta como realizada no Power BI.</span></li>
     <li><span><strong>Reagendar:</strong> a atividade foi adiada. Indicar a nova data, ou escolher "Ainda não sei a nova data"; neste caso fica em "Por reagendar" até ser escolhida a data.</span></li>
     <li><span><strong>Cancelar:</strong> a atividade não se vai realizar. O evento é cancelado no calendário da unidade.</span></li>
-    <li><span><strong>Editar:</strong> corrigir dados da atividade (duração, tipo, participantes, local, etc.). A data e a hora só podem ser mudadas aqui durante um período curto (ver <a href="#sec-cal-data">Mudar a data de uma atividade</a>).</span></li>
+    <li><span><strong>Editar:</strong> corrigir dados da atividade (duração, tipo, participantes, local, etc.; ver <a href="#sec-cal-participantes">Acrescentar ou retirar participantes</a>). A data e a hora só podem ser mudadas aqui durante um período curto (ver <a href="#sec-cal-data">Mudar a data de uma atividade</a>).</span></li>
   </ol>
 </div>
 ```
@@ -712,11 +798,24 @@ Para extrair os dados, abrir a página **Extração** e, na tabela, escolher **�
 
 #### Registar uma atividade em que não participa {#sec-cal-nao-participa}
 
-Desmarcar **"Eu participo nesta atividade"** e indicar os colegas em **Outros participantes**. Quem regista não recebe convite nem conta nas horas ou participações, mas continua a ver a atividade em "Os meus eventos" para a poder fechar, reagendar ou cancelar.
+Desmarcar **"Eu participo nesta atividade"** e indicar os colegas em **Outros participantes** (é obrigatório indicar pelo menos um). Quem regista não recebe convite nem conta nas horas ou participações, mas continua a ver a atividade em "Os meus eventos" para a poder fechar, reagendar ou cancelar.
 
 #### Atividade com vários participantes {#sec-cal-varios}
 
 Todos os participantes veem a atividade em "Os meus eventos" e podem fechá-la. Assim que um deles indica o estado final, este é aplicado a todos, e fica registado quem o fez e quando. Não é necessário que cada participante feche a atividade.
+
+#### Acrescentar ou retirar participantes {#sec-cal-participantes}
+
+Abrir a atividade em "Os meus eventos" ou na Vista Global e carregar em **Editar**. O campo **Outros participantes** vem preenchido com os participantes atuais: é possível acrescentar pessoas (uma a uma ou com **Adicionar grupo**) e retirá-las. Também funciona em atividades passadas, para corrigir enganos.
+
+- **Atividades futuras** (planeadas ou adiadas): quem é acrescentado recebe convite no Outlook e quem é retirado recebe o cancelamento.
+- **Atividades que já passaram:** o Outlook não é alterado; corrige-se apenas o registo.
+
+Quem é retirado deixa de contar nas participações e nas horas; o número de atividades não muda. Não é possível retirar todos os participantes: aparece a mensagem "Uma atividade tem de ter pelo menos um participante. Se ninguém participou, cancele a atividade em vez de retirar todos."
+
+#### Cancelar uma série de atividades {#sec-cal-serie}
+
+Ao abrir uma atividade criada com **↻ Repetir…**, aparece a indicação **"↻ Faz parte de uma série · Cancelar esta e as seguintes"**. Esta opção cancela a atividade aberta e todas as seguintes da mesma série que ainda estejam planeadas, com o mesmo motivo de cancelamento (obrigatório). As atividades anteriores, e as já realizadas, não são alteradas. Para cancelar apenas uma das repetições, usar **Cancelar** como numa atividade normal.
 
 #### Conflito de agenda {#sec-cal-conflito}
 
@@ -746,7 +845,7 @@ Para que todas as mudanças de data fiquem registadas, a data e a hora só podem
 - **No dia em que a atividade é criada**, para corrigir enganos;
 - **Atividades importadas da planificação anual:** durante os **7 dias** seguintes à importação.
 
-Depois disso, no ecrã "Editar atividade", a data e a hora aparecem a cinzento, com a nota **"🔒 Para mudar a data, use Adiar."** Os restantes campos (local, observações, participantes, concelho, etc.) continuam editáveis.
+Depois disso, no ecrã "Editar atividade", a data e a hora aparecem a cinzento, com a nota **"🔒 Para mudar a data, use Adiar."** Os restantes campos (hora de término e duração, local, observações, participantes, concelho, etc.) continuam editáveis.
 
 Para mudar a data a partir daí, usar **Reagendar** no detalhe da atividade (ver <a href="#sec-cal-fechar">Fechar uma atividade</a>). A mudança fica registada nas atividades adiadas. O Coordenador da USP pode mudar a data e a hora em qualquer altura.
 
@@ -756,7 +855,7 @@ A aplicação usa a lista de perfis dos profissionais da USP. Se o seu nome, ou 
 
 ### Versões da aplicação {#sec-cal-versao}
 
-A versão da aplicação aparece no canto inferior esquerdo do ecrã inicial (por exemplo, **v0.11.0-beta · build 49**). A numeração segue esta regra:
+A versão da aplicação aparece no canto inferior esquerdo do ecrã inicial (por exemplo, **v0.15.0-beta · build 67**). A numeração segue esta regra:
 
 | Parte | Significado |
 |---|---|
